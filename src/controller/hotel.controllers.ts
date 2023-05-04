@@ -6,7 +6,7 @@ import { City } from "../models/city";
 import { Country } from "../models/country";
 import Hotel from "../models/hotel";
 
-const { GETAROOM_API_KEY, GETAROOM_AUTH_TOKEN, GETAROOM_PROPERTIES_API } =
+const { PROVIDER_X_PROPERTIES_API, PROVIDER_X_API_KEY, PROVIDER_X_AUTH_TOKEN } =
   process.env;
 
 const BATCH_SIZE = 1000;
@@ -16,7 +16,7 @@ const seedHotelsId = async () => {
     console.log("<<<<<<<<<<<<<<<<<<<Start Seeding>>>>>>>>>>>>>>>>>>>>>>>>");
 
     const response = await axios.get(
-      `${GETAROOM_PROPERTIES_API}?api_key=${GETAROOM_API_KEY}&auth_token=${GETAROOM_AUTH_TOKEN}`
+      `${PROVIDER_X_PROPERTIES_API}?api_key=${PROVIDER_X_API_KEY}&auth_token=${PROVIDER_X_AUTH_TOKEN}`
     );
 
     const allpropertiesData = await csvtojson().fromString(response.data);
