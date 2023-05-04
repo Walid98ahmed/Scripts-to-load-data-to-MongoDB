@@ -1,10 +1,11 @@
 import * as mongoose from "mongoose";
-const { COMBIGO_API_URL } = process.env;
 import axios from "axios";
 import { City } from "../models/city";
 import { Station } from "../models/station";
 import { Country } from "../models/country";
 import { stringSimilarity } from "./similarity";
+
+const { PROVIDER_Z_API_KEY_STATIONS, PROVIDER_Z_API_URL } = process.env;
 
 interface IDictionary<TValue> {
   [id: string]: TValue;
@@ -74,10 +75,10 @@ type doc = {
 
 const seedStationDB = async () => {
   let results = await axios
-    .get(`${COMBIGO_API_URL}`, {
+    .get(`${PROVIDER_Z_API_URL}`, {
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": "c1ac3d9a-8dae5c-fb72b2cc-fe35eb",
+        "x-api-key": PROVIDER_Z_API_KEY_STATIONS,
       },
     })
     .then((res) => res.data)

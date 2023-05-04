@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import { City } from "../models/city";
 import { Country } from "../models/country";
 
+const { PROVIDER_Y_API_URL_administratives, PROVIDER_Y_API_KEY } = process.env;
+
 const languages: string[] = [
   "ar",
   "bg",
@@ -42,10 +44,10 @@ const languages: string[] = [
 
 const seedCityDB = async () => {
   let results = await axios
-    .get(`https://api-travel.dev.combigo.com/v1/administratives`, {
+    .get(`${PROVIDER_Y_API_URL_administratives}`, {
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": "c1ac3d9a-8dae5c-fb72b2cc-fe35eb",
+        "x-api-key": PROVIDER_Y_API_KEY,
       },
     })
     .then((res) => res.data)
